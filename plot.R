@@ -1,16 +1,19 @@
+library(ggplot2)
+library(reshape2)
 
+setwd("/Users/atma/GenomeAnalysis/BovB/Horse/Orlandos_Horses/BovbIntervals/")
 
-# read in data
-data <- read.table("./test3.txt")
+data <- read.table("Landscape1.txt")
 
-pdf('landscape.pdf')
+# plot first triangle to set up the graph window
+plot(data[,1], data[,2], type = "l")
 
-plot(data[,2], type = "l")
-lines(data[,3], col = 2)
-lines(data[,4], col = 3)
+data2 <- melt(data, id=1:1)
 
-dev.off()
-
+ggplot(data2, aes(data2[,1], value, col=variable)) + geom_line() + 
+xlab("") + 
+ylab("") +
+ggtitle("Persistence Landscape of Equid BovB Interval 1")
 
 
 
